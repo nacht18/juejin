@@ -1,0 +1,30 @@
+name: 5ibug
+on: 
+ workflow_dispatch:
+ schedule:
+    - cron: '00 0 * * *'
+
+jobs:
+  juejin_auto_boiling_point:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.7"]
+    steps:
+      - name: Checkout 🚀
+        uses: actions/checkout@v2
+        with:
+          repository: 'xiaoma118/juejin_auto_boiling_point'
+          branch: main
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v3
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests-html
+      - name: Startup file
+        run: |
+          python main.py '${{ secrets.5ibug }}'
+          python auto_like.py '${{ secrets.5ibug }}'
