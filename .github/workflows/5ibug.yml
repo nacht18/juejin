@@ -26,5 +26,5 @@ jobs:
           pip install requests-html
       - name: Startup file
         run: |
-          python main.py '${{ secrets.5ibug }}'
-          python auto_like.py '${{ secrets.5ibug }}'
+          python main.py '${{ secrets.bug }}'
+          python auto_like.py '${{ secrets.bug }}'
